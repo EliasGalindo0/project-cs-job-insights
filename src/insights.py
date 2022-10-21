@@ -3,31 +3,23 @@ from src import jobs
 
 def get_unique_job_types(path):
     content = jobs.read(path)
-    job = []
+    job_types = []
 
     for info in content:
-        if info['job_type'] not in job:
-            job.append(info['job_type'])
+        if info['job_type'] not in job_types:
+            job_types.append(info['job_type'])
 
-    return job
+    return job_types
 
 
 def filter_by_job_type(jobs, job_type):
-    """Filters a list of jobs by job_type
+    result = []
 
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    job_type : str
-        Job type for the list filter
+    for info in jobs:
+        if info['job_type'] == job_type:
+            result.append(info)
 
-    Returns
-    -------
-    list
-        List of jobs with provided job_type
-    """
-    return []
+    return result
 
 
 def get_unique_industries(path):
