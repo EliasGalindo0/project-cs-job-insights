@@ -5,9 +5,9 @@ def get_unique_job_types(path):
     content = jobs.read(path)
     job_types = []
 
-    for info in content:
-        if info['job_type'] not in job_types:
-            job_types.append(info['job_type'])
+    for row in content:
+        if row['job_type'] not in job_types:
+            job_types.append(row['job_type'])
 
     return job_types
 
@@ -15,29 +15,22 @@ def get_unique_job_types(path):
 def filter_by_job_type(jobs, job_type):
     result = []
 
-    for info in jobs:
-        if info['job_type'] == job_type:
-            result.append(info)
+    for row in jobs:
+        if row['job_type'] == job_type:
+            result.append(row)
 
     return result
 
 
 def get_unique_industries(path):
-    """Checks all different industries and returns a list of them
+    content = jobs.read(path)
+    industry = []
 
-    Must call `read`
+    for row in content:
+        if row['industry'] not in industry and row['industry'] != '':
+            industry.append(row['industry'])
 
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique industries
-    """
-    return []
+    return industry
 
 
 def filter_by_industry(jobs, industry):
